@@ -2,11 +2,13 @@
 #include<vector>
 #include<iostream>
 #include <queue>
+#define MAX_VALUE 9999
+
 using namespace std;
 
-vector<vector<pair<int,int> > > la;
-int n,m,s;
-vector<int>d, tata,viz,culoare;
+vector< vector < pair < int, int > > > la;
+int n, m, s;
+vector< int > d, tata, viz, culoare;
 
 void citire()
 {
@@ -17,75 +19,81 @@ void citire()
     culoare.resize(n+1);
     la.resize(n+1);
     d.resize(n+1);
-    for(int i=0;i<m;i++)
+    for (int i = 0; i < m; i++)
     {
-        int x,y,z;
+        int x, y, z;
         f>>x>>y>>z;
-        la[x].push_back({y,z});
-        la[y].push_back({x,z});
+        la[x].push_back({y, z});
+        la[y].push_back({x, z});
     }
-        s=1;
-   // cout<<"s= "; cin>>s;
+    s = 1;
 }
 
 void afisare()
 {
-   for(int i=1;i<=n;i++)
-    { for(int j=0;j<la[i].size();j++) cout<<la[i][j].first<<" ";
-    cout<<endl;}
-    for(int i=1;i<=n;i++) cout<<tata[i]<<" ";
+   for (int i = 1; i <= n; i++)
+    {
+        for (int j = 0; j < la[i].size(); j++)
+            cout<<la[i][j].first<<" ";
+        cout<<endl;
+    }
+    for (int i = 1; i <= n; i++)
+        cout<<tata[i]<<" ";
 }
 
 void initializare()
 {
-    for(int i=1;i<=n;i++)
+    for (int i = 1; i <= n; i++)
     {
-        culoare[i]=i;
-        d[i]=9999;
-        tata[i]=0;
-        viz[i]=0;
+        culoare[i] = i;
+        d[i] = MAX_VALUE;
+        tata[i] = 0;
+        viz[i] = 0;
     }
 }
 
 int caut_min()
 {
-    int min=10000;
-    int u=0;
-    for(int i=1;i<=n;i++)
-    if(d[i]<min&&viz[i]==0) {min=d[i]; u=i;}
-        return u;
+    int min = MAX_VALUE;
+    int u = 0;
+    for (int i = 1; i <= n; i++)
+    if (d[i] < min && viz[i] == 0)
+    {
+        min = d[i];
+        u = i;
+    }
+    return u;
 }
 
 void dijkstra()
 {
-
     initializare();
-    d[s]=0;
-    for(int i=1;i<=n;i++)
+    d[s] = 0;
+    for (int i = 1; i <= n; i++)
     {
         int u;
-        u=caut_min();
-        viz[u]=1;
-        for(int j=0;j<la[u].size();j++)
+        u = caut_min();
+        viz[u] = 1;
+        for (int j = 0; j < la[u].size(); j++)
         {
-            int v=la[u][j].first;
-            if(d[v]>d[u]+la[u][j].second)
+            int v = la[u][j].first;
+            if (d[v] > d[u] + la[u][j].second)
             {
-                tata[v]=u;
-                d[v]=d[u]+la[u][j].second;
+                tata[v] = u;
+                d[v] = d[u] + la[u][j].second;
             }
         }
     }
-    for(int i=1;i<=n;i++) cout<<tata[i]<<" ";
+    for (int i = 1; i <= n; i++)
+        cout<<tata[i]<<" ";
     cout<<endl;
-    for(int i=1;i<=n;i++) cout<<d[i]<<" ";
-
+    for (int i = 1; i <= n; i++)
+        cout<<d[i]<<" ";
 }
 
 int main()
 {
-   citire();
-   dijkstra();
-
+    citire();
+    dijkstra();
     return 0;
 }
