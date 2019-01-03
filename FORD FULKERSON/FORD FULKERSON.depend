@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1527284956 source:c:\users\flori\desktop\cb\ford fulkerson\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<queue>
+

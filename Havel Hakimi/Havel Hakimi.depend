@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1527278272 source:c:\users\flori\desktop\cb\havel hakimi\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<algorithm>
+

@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1527269763 source:c:\users\flori\desktop\cb\prim 1\main.cpp
+	<fstream>
+	<vector>
+	<iostream>
+	<queue>
+
